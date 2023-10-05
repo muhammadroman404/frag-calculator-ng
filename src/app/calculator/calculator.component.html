@@ -1,0 +1,104 @@
+<div class="card">
+    <mat-card>
+        <h2>Calculate your blend!</h2>
+        <mat-divider></mat-divider>
+        <div class="card-content" [formGroup]="calculateForm">
+            <div class="row">
+                <h3>Quantity of Concentrate: </h3>
+                <div class="col-4">
+                    <mat-form-field color="primary" appearance="fill" class="ff-full-width">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput placeholder="Quantity" formControlName="quantity" >
+                        <span matTextSuffix>g</span>
+                        <!-- <mat-hint>Enter quantity of concentrate</mat-hint> -->
+                    </mat-form-field>
+                </div>
+                <div class="col6">
+
+                </div>
+            </div>
+            <div class="row">
+                <h3>Perfume Pyramid Proportion:</h3>
+                <div class="col-4">
+                    <mat-form-field color="primary" appearance="fill" class="ff-full-width">
+                        <mat-label>Top Notes</mat-label>
+                        <input matInput placeholder="Top Notes" formControlName="topPerc">
+                        <span matTextSuffix>%</span>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <mat-form-field color="primary" appearance="fill" class="ff-full-width">
+                        <mat-label>Middle Notes</mat-label>
+                        <input matInput placeholder="Middle Notes" formControlName="middlePerc">
+                        <span matTextSuffix>%</span>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <mat-form-field color="primary" appearance="fill" class="ff-full-width">
+                        <mat-label>Base Notes</mat-label>
+                        <input matInput placeholder="Base Notes" formControlName="basePerc">
+                        <span matTextSuffix>%</span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                        Perfume Accords
+                        </mat-panel-title>
+                        <mat-panel-description>
+                           Add perfume accords
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row" style="padding: 10px;padding-left: 0;">
+                        <div class="col-12">
+                            <button (click)="addAccord()" mat-raised-button color="primary">Add Accord</button>
+                        </div>
+                    </div>
+                    <div formArrayName="accords">
+                        <div *ngFor="let accord of accords.controls; let i = index" >
+                            <div [formGroupName]="i">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <mat-form-field color="primary" appearance="fill" class="ff-full-width">
+                                            <mat-label>Accord Name</mat-label>
+                                            <input matInput placeholder="Accord Name" formControlName="name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-3">
+                                        <mat-form-field  color="primary" appearance="fill" class="ff-full-width">
+                                            <mat-label>Type</mat-label>
+                                            <mat-select formControlName="type">
+                                              <mat-option value="top" > Top </mat-option>
+                                              <mat-option value="middle" > Middle </mat-option>
+                                              <mat-option value="base"> Base </mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                    </div>
+                                    <div class="col-3">
+                                        <mat-form-field color="primary" appearance="fill" class="ff-full-width">
+                                            <mat-label>Blending Factor</mat-label>
+                                            <input matInput placeholder="Blending Factor" formControlName="factor">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-2" >
+                                        <button (click)="deleteAccord(i)" mat-fab color="warn" aria-label="Example icon button with a bookmark icon">
+                                            <mat-icon>delete_forever</mat-icon>
+                                          </button>
+                                    </div>
+                                   </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+              
+               
+                </mat-expansion-panel>
+            </div>
+            <div class="calculate-btn">
+                <button (click)="calculate()" mat-raised-button color="primary">Calculate</button>
+            </div>
+        </div>
+    </mat-card>
+</div>
